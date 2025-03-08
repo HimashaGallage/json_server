@@ -10,14 +10,18 @@ const SECRET_KEY = 'your_secret_key';
 app.use(bodyParser.json());
 
 // Dummy user for authentication
-const user = { id: 1, username: 'admin', password: 'password' };
+const user = {
+    id: 1,
+    username: "user",
+    email: "maria@mail.com",
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.KMUFsIDTnFmyG3nMiGM6H9FNFUROf3wh7SmqJp-QV30"
+  }
 
 // Login endpoint to get token
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
-    if (username === user.username && password === user.password) {
-        const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: '1h' });
-        return res.json({ token });
+    if (username === 'user' && password === 'password') {
+        return res.json(user);
     }
     res.status(401).json({ message: 'Invalid credentials' });
 });
@@ -25,13 +29,11 @@ app.post('/login', (req, res) => {
 // Middleware to verify token
 const authenticate = (req, res, next) => {
     const token = req.headers['authorization'];
-    if (!token) return res.status(403).json({ message: 'Token required' });
-    jwt.verify(token.split(' ')[1], SECRET_KEY, (err, decoded) => {
-        if (err) return res.status(401).json({ message: 'Invalid token' });
-        req.user = decoded;
+    if (!token) return res.status(403).json({ message: 'Token required' })
+    else {
         next();
-    });
-};
+    }
+};  
 
 // Protected route serving JSON data from products.json
 app.get('/products', authenticate, (req, res) => {
