@@ -1,7 +1,7 @@
 # node server
 
 #### Running the Node.js Backend Server  -------------
-1. git clone https://github.com/HimashaGallage/nodeServer.git
+1. git clone https://github.com/HimashaGallage/nodeServer.git](https://github.com/HimashaGallage/json_server.git
 cd nodeServer
 
 2. Install Dependencies
