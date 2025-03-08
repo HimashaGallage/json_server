@@ -4,10 +4,15 @@
 1. git clone https://github.com/HimashaGallage/nodeServer.git](https://github.com/HimashaGallage/json_server.git
 cd nodeServer
 
-2. Install Dependencies
+2. Install Dependencies using
+```
 npm install
+```
 
-3. Run the node server
+4. Run the node server
+
+```
 node server.js
+```
 
-4. terminal should display 'Server running on http://localhost:3000'
+6. Commandline terminal should display 'Server running on http://localhost:3000'
